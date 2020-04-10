@@ -2,79 +2,39 @@ import uid from 'nanoid'
 
 const rootNodes = [
   {
-    id: uid(),
+    id: 12345678,
     parentId: null,
-    label: 'Root 1',
-    items: null
-  },
-  {
-    id: uid(),
+    label: "Allergies",
+    items: [
+      {
+
+        "label": "Gluten-Free",
+        "parentId": 12345678
+      }, {
+
+        "label": "Dairy Free",
+        "parentId": 12345678
+      }
+    ]
+  }, {
+    id: 123456789,
     parentId: null,
-    label: 'Root 2',
-    items: null
-  },
-  {
-    id: uid(),
-    parentId: null,
-    label: 'Root 3',
-    items: null
+    label: "Immune",
+    items: [
+      {
+        id: 876543210,
+        label: "Autoimmune",
+        parentId: 123456789
+      }, {
+        id: 876543212,
+        label: "Infection",
+        parentId: 123456789
+      }
+    ]
+
   }
 ]
 
-const childNodes = [
-  {
-    id: uid(),
-    parentId: rootNodes[0].id,
-    label: 'Child 1',
-    items: []
-  },
-  {
-    id: uid(),
-    parentId: rootNodes[1].id,
-    label: 'Child 2',
-    items: null
-  },
-  {
-    id: uid(),
-    parentId: rootNodes[2].id,
-    label: 'Child 3',
-    items: null
-  }
-]
 
-const childChildNodes = [
-  {
-    id: uid(),
-    parentId: childNodes[0].id,
-    label: 'Child Child 1',
-    items: null
-  },
-  {
-    id: uid(),
-    parentId: childNodes[1].id,
-    label: 'Child Child 2',
-    items: []
-  },
-  {
-    id: uid(),
-    parentId: childNodes[2].id,
-    label: 'Child Child 3',
-    items: null
-  }
-]
 
-for (let i = 0; i < 3; i++) {
-  childNodes[0].items.push({
-    id: uid(),
-    parentId: childNodes[0].id,
-    label: 'File ' + (i + 1)
-  })
-
-  childChildNodes[1].items.push({
-    id: uid(),
-    parentId: childChildNodes[1].id,
-    label: 'File ' + (i + 3)
-  })
-}
-
-export const nodes = [...rootNodes, ...childNodes, ...childChildNodes]
+export const nodes = [...rootNodes]

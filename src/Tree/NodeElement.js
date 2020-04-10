@@ -37,13 +37,14 @@ const NodeElement = (props: Props) => {
         onSelect(data)
       }}
       currentTheme={currentTheme}
-      selected={selected && selected.id === data.id }
+      selected={selected && selected.id === data.id}
     >
       <Wrapper level={level}>
-        <Icon currentTheme={currentTheme}>
-          <FontAwesomeIcon icon={isOpen ? 'chevron-down' : 'chevron-right'} />
-        </Icon>
+
         <NodeText>{data.label}</NodeText>
+        <Icon currentTheme={currentTheme}>
+          <FontAwesomeIcon icon={isOpen ? 'chevron-up' : 'chevron-down'} />
+        </Icon>
       </Wrapper>
     </Element>
   )
@@ -51,12 +52,12 @@ const NodeElement = (props: Props) => {
 
 NodeElement.defaultProps = {
   data: null,
-  toggle: () => {},
+  toggle: () => { },
   isOpen: false,
   isRoot: false,
   level: 0,
   selected: null,
-  onSelect: () => {},
+  onSelect: () => { },
   currentTheme: 'dark'
 }
 

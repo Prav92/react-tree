@@ -15,6 +15,7 @@ const _Wrapper = styled(motion.div)`
   display: flex;
   align-items: center;
   min-width: 0;
+  justify-content: space-between;
 `
 
 const Wrapper = (props: Props) => {
