@@ -6,17 +6,14 @@ export const Element = styled(motion.div)`
   min-height: 20px;
   min-width: 0;
   border-bottom: 1px solid ${props => props.theme[props.currentTheme].highlight};
-  ${props => props.isOpen ? 
+  ${props => props.isOpen ?
     `
       border-left: 4px solid ${props.theme[props.currentTheme].decal};
       margin-left: -4px;
     ` : ``}
   
-  &:hover {
-    background: ${props => props.theme[props.currentTheme].highlight};
   }
-
-  ${props => props.selected ? `background-color: ${props.theme[props.currentTheme].highlight};` : ''}
+  ${ props => props.clicked ? `background-color: ${props.theme[props.currentTheme].clicked};` : ''}
 `
 
 export const Empty = styled(Element)`

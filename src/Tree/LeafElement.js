@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import Wrapper from './Wrapper'
@@ -18,10 +18,21 @@ type Props = {
   selected: ?Node
 }
 
+
+
+
 const LeafElement = (props: Props) => {
-  const { data, level, onSelect, currentTheme, selected } = props
+  const { data, level, reset, onSelect, currentTheme, selected } = props
+  const [clicked, setClicked] = React.useState(false)
+
+  useEffect(() => {
+    setClicked(false)
+  }, [reset])
   return (
-    <Element selected={selected && selected.id === data.id} currentTheme={currentTheme} onClick={() => onSelect(props.data)}>
+    <Element selected={selected && selected.id === data.id} currentTheme={currentTheme} onClick={() => {
+      onSelect(props.data)
+      setClicked(previousClicked => !previousClicked);
+    }} clicked={clicked}>
       <Wrapper level={level + 1}>
         <NodeText>{data.label}</NodeText>
       </Wrapper>
@@ -33,7 +44,7 @@ LeafElement.defaultProps = {
   data: {
     id: null,
     label: null,
-    parent_id: null
+    parent_lable: null
   },
   level: 0,
   currentTheme: 'dark',

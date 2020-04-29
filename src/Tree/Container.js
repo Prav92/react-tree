@@ -35,7 +35,7 @@ const Children = styled(_Container)``
 
 const Container = (props: Props) => {
   // PROPS
-  const { nodes, parent, level, selected, onSelect, currentTheme, showEmptyItems} = props
+  const { nodes, parent, level, reset, selected, onSelect, currentTheme, showEmptyItems } = props
 
 
   // get container items for this level and ancestors for next container
@@ -45,7 +45,7 @@ const Container = (props: Props) => {
     _containerItems
   )
 
-   // STATE
+  // STATE
   const [_isOpen, _setIsOpen] = React.useState(Array(_containerItems.length).fill(false)) // keeping track of open folders
 
 
@@ -85,10 +85,12 @@ const Container = (props: Props) => {
                     />
                     {item.items &&
                       item.items.map((child, l) => {
+
                         return (
                           <LeafElement
                             data={child}
                             key={l}
+                            reset={reset}
                             level={level}
                             onSelect={onSelect}
                             selected={selected}
@@ -116,7 +118,7 @@ Container.defaultProps = {
   parent: null,
   level: 0,
   selected: null,
-  onSelect: () => {},
+  onSelect: () => { },
   currentTheme: 'dark',
   showEmptyItems: false
 }

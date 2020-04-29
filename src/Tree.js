@@ -20,6 +20,7 @@ type Props = {
   customTheme: ThemeSettings,
   theme: string,
   grow: boolean,
+  reset: boolean,
   showEmptyItems: boolean
 }
 
@@ -38,7 +39,7 @@ const _Tree = styled(motion.div)`
   }}
     
   color: ${props => props.theme[props.currentTheme].text};
-  background-color: ${props => props.theme[props.currentTheme].bg };
+  background-color: ${props => props.theme[props.currentTheme].bg};
 
   & * {
     user-select: none;
@@ -56,18 +57,23 @@ const Spinner = styled(motion.div)``
 
 const Tree = (props: Props) => {
   // PROPS
-  const { size, nodes, isLoading, onSelect,  customTheme, theme, grow, showEmptyItems } = props
+  const { size, nodes, reset, isLoading, onSelect, customTheme, theme, grow, showEmptyItems } = props
   const [_theme, setTheme] = React.useState(Object.assign({}, customTheme, coreTheme))
 
   // STATE
   const _nodeList = React.useRef(nodes).current
   const [_selected, _setSelected] = React.useState(null)
+  // const [reset, setReset] = React.useState(false)
 
   // select the node and call onSelect callback
   const selectNode = (selectedNode: any): void => {
     _setSelected(selectedNode)
     onSelect(selectedNode)
   }
+
+  // const reseting = () => {
+  //   setReset(previousReset => !previousReset)
+  // }
 
   return (
     <ThemeProvider theme={_theme}>
@@ -78,11 +84,12 @@ const Tree = (props: Props) => {
             onSelect={selectNode}
             parent={null}
             nodes={nodes}
+            reset={reset}
             currentTheme={theme || 'dark'}
             showEmptyItems={showEmptyItems}
           />
         )}
-        {!isLoading  && !nodes.length && (
+        {!isLoading && !nodes.length && (
           <Loader>
             <p>No data :(</p>
           </Loader>
@@ -95,6 +102,7 @@ const Tree = (props: Props) => {
           </Loader>
         )}
       </_Tree>
+
     </ThemeProvider>
   )
 }
@@ -103,7 +111,7 @@ Tree.defaultProps = {
   nodes: [],
   size: 'full',
   isLoading: false,
-  onSelect: () => {},
+  onSelect: () => { },
   customTheme: {
     dark: {
       text: '#fafafa',

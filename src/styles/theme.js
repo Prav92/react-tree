@@ -3,13 +3,15 @@ export default {
     text: '#fafafa',
     bg: '#2d3439',
     highlight: '#3f464e',
+    clicked: "#3f464e",
     decal: '#64abd4',
     accent: '#999'
   },
   light: {
     text: '#333',
     bg: '#fafafa',
-    highlight: '#f0f0f0',
+    highlight: '#d7d7d7',
+    clicked: "#f0f0f0",
     decal: '#64abd4',
     accent: '#ccc'
   },

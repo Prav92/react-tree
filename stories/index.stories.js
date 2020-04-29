@@ -6,6 +6,9 @@ import { nodes } from './data/test'
 import { nodes as longNodes } from './data/test_long_names'
 import { action, configureActions } from '@storybook/addon-actions'
 
+
+
+
 storiesOf('React-Tree', module)
   .add('Dark mode (full width) loading', () => <Tree nodes={null} />)
   .add('Light mode (full width) loading', () => (
@@ -27,7 +30,7 @@ storiesOf('React-Tree', module)
     <Tree nodes={nodes} onSelect={action('select-node')} />
   ))
   .add('Light mode (full width)', () => (
-    <Tree nodes={nodes} darkMode={false} onSelect={action('select-node')} />
+    <Tree nodes={nodes} theme={'light'} darkMode={false} onSelect={action('select-node')} />
   ))
   .add('Dark mode (full width) with long labels', () => (
     <Tree nodes={longNodes} onSelect={action('select-node')} />
